@@ -67,3 +67,11 @@ function deleteNote(id, notesArray) {
     }
 }
 
+app.delete('/api/notes/:id', (req, res) => {
+    deleteNote(req.params.id, allNotes);
+    res.json(true);
+});
+
+app.listen(PORT, () => {
+    console.log('API server now on port ${PORT}!');
+});
