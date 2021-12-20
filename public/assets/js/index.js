@@ -66,3 +66,32 @@ const renderActiveNote = () => {
     }
 };
 
+const handleNoteSave = () => {
+    const newNote = {
+        title: noteTitle.vaule,
+        text: noteText.vaule,
+    };
+    saveNote(newNote).then(() => {
+        getAndRenderNotes();
+        renderActiveNote();
+    });
+};
+
+//we want to allow the user to delete certain notes
+const handleNoteDelete = (e) => {
+    //this will prevent the user from clicking and accidently deleting their note when clicking more than once
+    e.stopPropagation();
+
+    const note = e.target;
+    const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
+
+    if (activeNote.id === noteId) {
+        activeNote = {};
+    }
+
+    deleteNote(noteId).then(() => {
+        getAndRenderNotes();
+        renderActiveNote();
+    });
+};
+
