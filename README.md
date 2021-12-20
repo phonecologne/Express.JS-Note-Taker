@@ -1,7 +1,7 @@
 # Express.js Challenge: Note Taker
 
 ## Description
-With this application, you will be able to write notes to keep yourself organized. Using HEROKU I was able to create the exact thing you asked for.
+With this application, you will be able to write notes to keep yourself organized. Using HEROKU as the host I was able to create the exact thing you asked for.
 
 ## Screenshoot of the finished webpage
 
