@@ -150,6 +150,31 @@ const renderNoteList = async (notes) => {
             liEl.append(delBtnEl);
         }
 
-        
+        return liEl;
+    };
+
+    if (jsonNotes.length === 0) {
+        noteListItems.push(createLi('No Saved Notes', false));
     }
+
+    jsonNotes.forEach((note) => {
+        const li = createLi(note.title);
+        li.dataset.note = JSON.stringify(note);
+    });
+
+    if (window.location.pathname === '/notes') {
+        nateListItems.forEach((note) => noteList[0].append(note));
+    }
+};
+
+//now we want to be able to get the old notes from DB JSON and show them on a sidebar
+const getAndRenderNotes = () => getNotes().then(renderNoteList);
+
+if (window.location.pathname === '/notes') {
+    saveNoteBtn.addEventListener('click', handleNoteSave);
+    newNoteBtn.addEventListener('click', handleNewNoteView);
+    noteTitle.addEventListener('keyup', handleRenderSaveBtn);
+    noteText.addEventListener('keyup', handleRenderSaveBtn);
 }
+
+getAndRenderNotes();
