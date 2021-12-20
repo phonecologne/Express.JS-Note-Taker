@@ -33,4 +33,36 @@ const getNotes = () =>
     },
   });
 
-  
+const saveNote = (note) =>
+fetch('/api/notes', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(note),
+});
+
+const deleteNote = (id) =>
+fetch(`/api/notes/${id}`, {
+    method: 'DELETE',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+});
+
+const renderActiveNote = () => {
+    hide(saveNoteBtn);
+
+    if (activeNote.id) {
+        noteTitle.setAttribute('readonly', true);
+        noteText.setAttribute('readonly', true);
+        noteTitle.vaule = activeNote.title;
+        noteText.vaule = activeNote.text;
+    } else {
+        noteTitle.removeAttribute('readonly');
+        noteText.removeAttribute('readonly');
+        noteTitle.vaule = '';
+        noteText.vaule = '';
+    }
+};
+
