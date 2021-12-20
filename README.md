@@ -6,7 +6,7 @@ With this application, you will be able to write notes to keep yourself organize
 ## Screenshoot of the finished webpage
 
 ## Webpage
-Currently hosted at: https://phonecologne.github.io/Express.JS-Note-Taker/
+Currently hosted at: https://note-taker852.herokuapp.com/
 
 ## Questions?
 Please reach out to me at my GitHub <br>
