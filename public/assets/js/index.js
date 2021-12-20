@@ -95,3 +95,61 @@ const handleNoteDelete = (e) => {
     });
 };
 
+//now we should code the active note and it will show up on the page
+const handleNoteView = (e) => {
+    e.preventDefault();
+    activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
+    renderActiveNote();
+};
+
+//lets not forget to set the note field as blank at the start so the user can input their notes into the fields
+const handleNewNoteView = (e) => {
+    activeNote = {};
+    renderActiveNote();
+};
+
+const handleRenderSaveBtn = () => {
+    if (!noteTitle.vaule.trim() || !noteText.vaule.trim()) {
+        hide(saveNoteBtn);
+    } else {
+        show(saveNoteBtn);
+    }
+};
+
+//creating the list of user inputted notes
+const renderNoteList = async (notes) => {
+    let jsonNotes = await notes.json();
+    if (window.location.pathname === '/notes') {
+        noteList.forEach((el) => (el.innerHTML = ''));
+    }
+
+    let noteListItmes = [];
+
+    //now lets go back to the HTML page and not have to click on delete
+    const createLi = (text, delBtn = true) => {
+        const liEl = document.createElement('li');
+        liEl.classList.add('list-group-item');
+
+        const spanEl = document.createElement('span');
+        spanEl.innerText = text;
+        spanEl.addEventListener('click', handleNoteView);
+
+        liEl.append(spanEl);
+
+        if (delBtn) {
+            const delBtnEl = document.createElement('i');
+            delBtnEl.classList.add(
+                'fas',
+                'fa-trash-alt',
+                'float-right',
+                'text-danger',
+                'delete-note'
+            );
+            delBtnEl.addEventListener('click', handleNoteDelete);
+
+            liEl.append(delBtnEl);
+        }
+
+        
+    }
+}
